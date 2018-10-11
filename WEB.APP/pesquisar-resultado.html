@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>F.P.S.R.</title>
+    <!-- Bootstrap CSS -->
+    <style type="text/css">
+        html,
+        body {
+            font: 16pt arial;
+        }
+
+        #viz {
+
+            width: 100%;
+            height: 700px;
+            border: 1px solid lightgray;
+            font: 22pt arial;
+        }
+    </style>
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<script>
+    function draw() {
+        var config = {
+            container_id: "viz",
+            server_url: "bolt://18.209.178.178:34509",
+            server_user: "neo4j",
+            server_password: "polices-longitude-flight",
+            labels: {
+                "Pessoa": {
+                    caption: "Nome",
+                    size: "pagerank",
+                    community: "community"
+                },
+                "Estado": {
+                    caption: "Nome",
+                    size: "pagerank"
+                }
+            },
+            relationships: {
+                "DESLOCAMENTO": {
+                    caption: true,
+                    thickness: "count"
+                }
+            },
+
+            //match p=(p:Pessoa)-[DESLOCAMENTO]->(e:Estado) return p,e
+
+            initial_cypher: "match p=(pe:Pessoa)-[DESLOCAMENTO]->(e:Estado) return p,e"
+        }
+
+        var viz = new NeoVis.default(config);
+        viz.render();
+    }
+</script>
+
+<body onload="draw()">
+
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container box_1620">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html"><img src="img/150.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-center col-lg-8">
+                            <li class="nav-item active"><a class="nav-link" href="dashboard-logado.html">Painel de
+                                    Controle</a></li>
+                            <li class="nav-item"><a class="nav-link" href="historico-de-pesquisa.html">Histórico de
+                                    Pesquisas</a></li>
+
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Pesquisar</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="price.html">Vítimas</a>
+                                    <li class="nav-item"><a class="nav-link" href="elements.html">Aliciadores</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pesquisar-exploracao-por-atividade-a.html">Exploração
+                                            por atividade BD A</a>
+                                    <li class="nav-item"><a class="nav-link" href="pesquisar-exploracao-por-atividade-a+b.html">Exploração
+                                            por atividade BD A+B</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner">
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!-- Start Align Area -->
+    <div class="whole-wrap">
+        <div class="container">
+            <div class="section-top-border">
+                <h3 class="mb-30 title_color">Resultado #1</h3>
+
+                <div class="progress-table">
+                    <div class="table-head">
+                        <div class="serial"></div>
+                        <div class="country">Relação de fluxo migratório:</div>
+                        <div class="country">Pessoas e Localização</div>
+                    </div>
+                    <div class="table-row">
+
+                        <div id="viz"></div>
+
+
+                    </div>
+                </div>
+                <div> </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- End Align Area -->
+
+    <!--================Footer Area =================-->
+    <footer class="footer_area p_120">
+        <div class="container">
+            <div class="row footer_inner">
+                <div class="col-sm-6 col-lg-9 offset-lg-0">
+                    <aside class="f_widget ab_widget">
+                        <div class="f_title">
+                            <h3>Sobre o sistema</h3>
+                        </div>
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> Feito com <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> por <a href="https://colorlib.com" target="_blank">Bluelake</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="vendors/isotope/isotope-min.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendors/counter-up/jquery.counterup.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
+</html>
